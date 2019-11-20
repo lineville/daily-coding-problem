@@ -1,0 +1,15 @@
+{
+  "name": "nov-18",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tri-sort.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "simple-unit-test-utility": "^1.1.2"
+  }
+}

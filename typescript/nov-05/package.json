@@ -1,0 +1,15 @@
+{
+  "name": "nov-05",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nov-05.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prefix-trie-ts": "0.0.4"
+  }
+}

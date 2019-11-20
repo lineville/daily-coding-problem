@@ -1,0 +1,17 @@
+{
+  "name": "nov-15",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "linked-list-typescript": "^1.0.15",
+    "proper-graph": "^2.5.2",
+    "simple-unit-test-utility": "^1.1.1"
+  }
+}
