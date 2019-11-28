@@ -1,0 +1,41 @@
+// * Daily coding problem nov 16
+
+/**
+ * * Compute the running median of a sequence of numbers. That is, given a stream of numbers,
+ * * print out the median of the list so far on each new element.
+ */
+
+const testMedian = () => {
+  const input = [2, 1, 5, 7, 2, 0, 5]
+  runningMedian(input)
+}
+
+const medianOfArray = numbers => {
+  let sorted = numbers.sort()
+
+  let index
+
+  if (sorted.length % 2 === 0) {
+    // * Even
+    index = sorted.length / 2
+    let value = (sorted[index] + sorted[index - 1]) / 2
+    console.log(value.toString())
+  } else {
+    // * Odd
+    index = (sorted.length - 1) / 2
+    console.log(sorted[index].toString())
+  }
+}
+
+const runningMedian = numbers => {
+  if (numbers.length === 0) {
+    throw new Error('Cannot compute median of empty array')
+  }
+
+  for (let i = 1; i < numbers.length; i++) {
+    let numsSoFar = numbers.slice(0, i + 1)
+    medianOfArray(numsSoFar)
+  }
+}
+
+testMedian()
