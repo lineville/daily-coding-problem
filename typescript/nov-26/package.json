@@ -1,0 +1,13 @@
+{
+  "name": "nov-26",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "go": "tsc *.ts && node stack.js && node queue.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Liam Neville",
+  "license": "ISC"
+}
