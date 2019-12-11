@@ -1,7 +1,10 @@
 // *  Daily coding problem Nov 22 2019
 var GameOfLife = /** @class */ (function () {
+    // * Initialize board to an empty board, or an array large enough to accomodate
+    // * the optional initial coordianates, with the coordinates initialized.
     function GameOfLife(initCoords) {
         var _this = this;
+        // * Calculates the dimensions of the board required to accomodate the init coords
         this.dimensionsRequiredForInit = function (initCoords) {
             var dimensionsNeeded = 0;
             initCoords.forEach(function (cell) {
@@ -12,6 +15,7 @@ var GameOfLife = /** @class */ (function () {
             });
             return dimensionsNeeded + 1;
         };
+        // * Populates a new grid with the initial coordinates provided
         this.populateGrid = function (initCoords) {
             var dimensions = _this.dimensionsRequiredForInit(initCoords);
             var grid = new Array(dimensions);
@@ -25,8 +29,9 @@ var GameOfLife = /** @class */ (function () {
             initCoords.forEach(function (coord) {
                 grid[coord.row][coord.column] = true;
             });
-            _this.board = grid;
+            return grid;
         };
+        // * Calculate the number of alive neighbors for this cell
         this.neighbors = function (cell) {
             var aliveNeighbors = 0;
             // Edge cases for cells on that are on corners or edges and can't safely access every neighbor
@@ -65,29 +70,70 @@ var GameOfLife = /** @class */ (function () {
             }
             return aliveNeighbors;
         };
+        // * Expands the existing board to include newRows many new rows
         this.expandGrid = function (newRows) {
-            // Add false columns to existing rows
+            var expandedGrid = new Array(_this.board.length);
+            // * Copy over current board
+            for (var i = 0; i < _this.board.length; i++) {
+                expandedGrid[i] = _this.board[i];
+            }
             for (var i = 0; i < _this.board.length; i++) {
                 for (var j = 0; j < newRows; j++) {
-                    _this.board[i].push(false);
+                    expandedGrid[i].push(false);
                 }
             }
-            // Add new rows
             for (var i = 0; i < newRows; i++) {
                 var newRow = new Array(_this.board.length + newRows);
                 for (var j = 0; j < _this.board.length + newRows; j++) {
                     newRow[j] = false;
                 }
-                _this.board.push(newRow);
+                expandedGrid.push(newRow);
             }
+            return expandedGrid;
+        };
+        this.shouldRessurectOutOfBoundsNeighbor = function (cell) {
+            // * 4 cases for the 4 types of edges
+            // * Top edge
+            if (cell.row === 0 && cell.column > 0 && cell.column < _this.board.length - 1) {
+                if (_this.board[cell.row][cell.column + 1] && _this.board[cell.row][cell.column - 1]) {
+                    return true;
+                }
+            }
+            // * Bottom edge
+            if (cell.row === _this.board.length - 1 && cell.column > 0 && cell.column < _this.board.length - 1) {
+                if (_this.board[cell.row][cell.column + 1] && _this.board[cell.row][cell.column - 1]) {
+                    return true;
+                }
+            }
+            // * Left edge
+            if (cell.column === 0 && cell.row > 0 && cell.row < _this.board.length - 1) {
+                if (_this.board[cell.row + 1][cell.column] && _this.board[cell.row - 1][cell.column]) {
+                    return true;
+                }
+            }
+            // * Right edge
+            if (cell.column === _this.board.length - 1 && cell.row > 0 && cell.row < _this.board.length - 1) {
+                if (_this.board[cell.row + 1][cell.column] && _this.board[cell.row - 1][cell.column]) {
+                    return true;
+                }
+            }
+            return false;
         };
         // * Needs to expand if new cells need to be created out of boundaries
+        // * Need to check if any cells out of bounds could be resurrected.
+        // * 
         this.tick = function () {
             var newBoard = new Array(_this.board.length);
             for (var i = 0; i < _this.board.length; i++) {
                 var newRow = new Array(_this.board.length);
                 for (var j = 0; j < _this.board.length; j++) {
-                    var numNeighbors = _this.neighbors({ row: i, column: j });
+                    var currentCell = { row: i, column: j };
+                    var numNeighbors = _this.neighbors(currentCell);
+                    if (_this.shouldRessurectOutOfBoundsNeighbor(currentCell)) {
+                        newBoard = _this.expandGrid(1);
+                        console.log("Expanded");
+                    }
+                    // * Check if this situation would ressurect a cell out of bounds, in which case we need to expand
                     if (_this.board[i][j] && (numNeighbors < 2 || numNeighbors > 3)) {
                         newRow[j] = false;
                     }
@@ -112,12 +158,7 @@ var GameOfLife = /** @class */ (function () {
                 console.log(rowStr);
             }
         };
-        if (initCoords) {
-            this.populateGrid(initCoords);
-        }
-        else {
-            this.board = new Array();
-        }
+        this.board = initCoords ? this.populateGrid(initCoords) : new Array();
     }
     return GameOfLife;
 }());
