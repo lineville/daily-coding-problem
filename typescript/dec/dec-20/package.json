@@ -1,0 +1,16 @@
+{
+  "name": "dec-20",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lfu-cache.js",
+  "dependencies": {
+    "@types/node": "^12.12.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

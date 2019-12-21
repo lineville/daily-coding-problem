@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+# Initializes a new directory with todays date
+# Copies tsconfig.json into the directory
+# Executes npm init -y
+# Create new file <filename>.ts from user arg
+# Launch VS Code
+
+now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
+
+mkdir $now
+
+echo "Created directory: $now"
+
+cp ./tsconfig.json $now
+
+cd $now
+
+npm init -y
+
+
+echo 'Created ' $1'.ts'
+
+touch $1'.ts'
+
+echo "// * Daily Coding Problem" >> $1'.ts'
+date >> $1'.ts'
+
+
+code .
+
