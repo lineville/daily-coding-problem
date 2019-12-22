@@ -21,8 +21,8 @@ var queue_1 = require("./queue");
 // * entry in an object or as complicated as having to replace the entry
 // * that has been there the longest
 // * Use a Queue which will add size but no time (which I guess is the point) ?
-var LRUCache = /** @class */ (function () {
-    function LRUCache(size) {
+var LFUCache = /** @class */ (function () {
+    function LFUCache(size) {
         var _this = this;
         // * Clears the cache back to original state
         this.clear = function () {
@@ -43,11 +43,12 @@ var LRUCache = /** @class */ (function () {
         // * Also check to see if we are full and set the full flag.
         // * O(1) to set and update values
         this.set = function (key, value) {
+            // let newCache: Map<number, T> = new Map(this.memory)
             var existingValue = _this.get(key);
             if (_this.allocatedMemory === _this.maxSize && existingValue === null) {
                 var evicted = _this.queue.dequeue();
                 _this.memory["delete"](evicted.key);
-                console.log("Evicted: " + evicted.key + " -> " + evicted.value);
+                console.log('Evicted: ' + evicted.key + ' -> ' + evicted.value);
             }
             // * Add new data to back of queue
             _this.queue.enqueue({ key: key, value: value });
@@ -56,14 +57,24 @@ var LRUCache = /** @class */ (function () {
             if (_this.allocatedMemory < _this.maxSize && existingValue === null) {
                 _this.allocatedMemory++;
             }
+            // return this.memory
+        };
+        // * Turns cache to string
+        this.toString = function () {
+            var result = '';
+            // * O(N) where N is size of the cache
+            _this.memory.forEach(function (data, idx) {
+                result += " [ " + idx + " : " + data + " ] ";
+            });
+            return result;
         };
         // * Print out the contents of memory
         this.print = function () {
-            console.log("Cache -- Size: " +
+            console.log('Cache -- Size: ' +
                 _this.maxSize +
-                " Allocated: " +
+                ' Allocated: ' +
                 _this.allocatedMemory +
-                "\n------------------------\n");
+                '\n------------------------\n');
             // * O(N) where N is size of the cache
             _this.memory.forEach(function (data) {
                 console.log(data);
@@ -74,35 +85,36 @@ var LRUCache = /** @class */ (function () {
         this.maxSize = size;
         this.allocatedMemory = 0;
     }
-    return LRUCache;
+    return LFUCache;
 }());
-var testLRUCache = function () {
-    var cache = new LRUCache(10);
-    cache.set(0, "A");
-    cache.set(1, "B");
-    cache.set(2, "C");
-    cache.set(3, "D");
-    cache.set(4, "E");
-    cache.set(5, "F");
-    cache.set(6, "G");
-    cache.set(7, "H");
-    cache.set(8, "I");
-    cache.set(9, "J");
-    cache.print();
-    cache.set(10, "NEW");
-    cache.print();
-    cache.set(5, "Five");
-    cache.print();
-    cache.clear();
-    cache.print();
-    cache.set(0, "A");
-    cache.set(1, "B");
-    cache.set(2, "C");
-    cache.set(3, "D");
-    cache.set(4, "E");
-    cache.set(5, "F");
-    cache.print();
-    cache.set(4, "Four");
-    cache.print();
-};
-testLRUCache();
+exports["default"] = LFUCache;
+// const testLFUCache = (): void => {
+//   let cache = new LFUCache(10)
+//   cache.set(0, 'A')
+//   cache.set(1, 'B')
+//   cache.set(2, 'C')
+//   cache.set(3, 'D')
+//   cache.set(4, 'E')
+//   cache.set(5, 'F')
+//   cache.set(6, 'G')
+//   cache.set(7, 'H')
+//   cache.set(8, 'I')
+//   cache.set(9, 'J')
+//   cache.print()
+//   cache.set(10, 'NEW')
+//   cache.print()
+//   cache.set(5, 'Five')
+//   cache.print()
+//   cache.clear()
+//   cache.print()
+//   cache.set(0, 'A')
+//   cache.set(1, 'B')
+//   cache.set(2, 'C')
+//   cache.set(3, 'D')
+//   cache.set(4, 'E')
+//   cache.set(5, 'F')
+//   cache.print()
+//   cache.set(4, 'Four')
+//   cache.print()
+// }
+// testLFUCache()
