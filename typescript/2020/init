@@ -1,11 +1,5 @@
 #!/bin/zsh
 
-# Initializes a new directory with todays date
-# Copies tsconfig.json into the directory
-# Executes npm init -y
-# Create new file <filename>.ts from user arg
-# Launch VS Code
-
 now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
 
 mkdir $now
@@ -16,26 +10,10 @@ cp ../../tsconfig.json $now
 
 cd $now
 
-npm init -y
-npm install simple-unit-test-utility
-
-
-echo 'Created ' $1'.ts'
-
-touch $1'.ts'
-
-echo "// * Daily Coding Problem $(date +%B) $(date +%d) $(date +%Y)" >> $1'.ts'
-
-echo "\nconst { didTestPass } = require('simple-unit-test-utility');" >> $1'.ts'
-
-echo "\nconst expected : boolean = true;" >> $1'.ts'
-
-echo "\nconst result : boolean = false;" >> $1'.ts'
-
-echo "\ndidTestPass(expected, result);" >> $1'.ts'
-
-tsc $1'.ts'
-node $1'.js'
-
+cp -r ../../MochaStarter/* .
+echo 'Installing dependencies ...'
+npm i
 code .
+npm t
+
 
