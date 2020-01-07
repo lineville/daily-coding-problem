@@ -15,9 +15,7 @@
  * * 4 islands
  */
 
- const { didTestPass } = require('simple-unit-test-utility')
-
-const numberOfIslands = (grid: Array<Array<number>>): number => {
+export const numberOfIslands = (grid: Array<Array<number>>): number => {
   let result: number = 0;
   for (let i: number = 0; i < grid.length; i++) {
     for (let j: number = 0; j < grid.length; j++) {
@@ -56,20 +54,3 @@ const recHelper = (grid: Array<Array<number>>, i: number, j: number): void => {
   });
 };
 
-const testIslandCounter = (): void => {
-  const input: Array<Array<number>> = [
-    [1, 0, 0, 0, 0],
-    [0, 0, 1, 1, 0],
-    [0, 1, 1, 0, 0],
-    [0, 0, 0, 0, 0],
-    [1, 1, 0, 0, 1],
-    [1, 1, 0, 0, 1]
-  ];
-
-  const expected: number = 4;
-  const result: number = numberOfIslands(input);
-  didTestPass(result, expected);
-  // console.log(result === expected ? "Passed" : "Failed");
-};
-
-testIslandCounter();
