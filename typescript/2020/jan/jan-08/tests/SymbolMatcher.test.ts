@@ -1,28 +1,28 @@
 import { expect, assert } from 'chai';
 import {numParensToRemove} from '../src/SymbolMatcher';
 
-describe('SymbolMatcher', function() {
-  it('numParensToRemove ()())()', function() {
+describe('SymbolMatcher', () =>  {
+  it('numParensToRemove ()())()', () => {
     let result = numParensToRemove('()())()')
     expect(result).equal(1);
   });
 
-  it('numParensToRemove )(', function() {
+  it('numParensToRemove )(', () => {
     let result = numParensToRemove(')(')
     expect(result).equal(2);
   });
 
-  it('numParensToRemove ((()())())', function() {
+  it('numParensToRemove ((()())())', () => {
     let result = numParensToRemove('((()())())')
     expect(result).equal(0);
   });
 
-  it('numParensToRemove )))()', function() {
+  it('numParensToRemove )))()', () => {
     let result = numParensToRemove(')))()')
     expect(result).equal(3);
   });
 
-  it('numParensToRemove ((()(bad', function() {
+  it('numParensToRemove ((()(bad', () => {
     assert.throw(() => numParensToRemove('bad'), "Not a paren!");
   });
 

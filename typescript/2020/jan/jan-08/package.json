@@ -20,6 +20,8 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
+    "@types/node": "^13.1.5",
+    "trie-search": "^1.2.11",
     "ts-data.stack": "^1.0.6"
   }
 }

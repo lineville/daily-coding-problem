@@ -13,8 +13,6 @@ export const numParensToRemove = (str: string): number => {
   for (let i: number = 0; i < str.length; i++) {
     // * Get the paren at the current index
     let paren: string = str[i];
-
-    // * Switch on the different cases for paren value
     switch (paren) {
       // * If it is an open paren push it on the stack
       case "(":
@@ -22,8 +20,6 @@ export const numParensToRemove = (str: string): number => {
         break;
       // * If it is a closed paren check the stack
       case ")":
-        // * If stack has an open paren on the top, pop it off.
-        // * Otherwise, push the closed paren on the stack.
         if (!stack.isEmpty() && stack.peek() === "(") {
           stack.pop();
         } else {
