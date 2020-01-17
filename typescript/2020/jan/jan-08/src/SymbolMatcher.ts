@@ -2,33 +2,35 @@
 
 // * [Medium] -- Google ( Good one for coding lesson )
 
-import Stack from "ts-data.stack";
+import Stack from 'ts-data.stack'
 
 // * Use a stack to push on open parens and pop off close parens.
 // * At the end the number of symbols left in stack should be returned
-export const numParensToRemove = (str: string): number => {
-  let stack = new Stack<string>();
+export const numParensToRemove = (inputString: string): number => {
+  let stack: Stack<string> = new Stack<string>()
 
-  // * Loop over the input string (perform the following block for each letter)
-  for (let i: number = 0; i < str.length; i++) {
-    // * Get the paren at the current index
-    let paren: string = str[i];
-    switch (paren) {
-      // * If it is an open paren push it on the stack
-      case "(":
-        stack.push(paren);
-        break;
-      // * If it is a closed paren check the stack
-      case ")":
-        if (!stack.isEmpty() && stack.peek() === "(") {
-          stack.pop();
-        } else {
-          stack.push(paren);
-        }
-        break;
-      default:
-        throw new Error("Not a paren!");
+  // * Execute this block of code inputString.length times
+  for (let i: number = 0; i < inputString.length; i++) {
+    let paren: string = inputString[i]
+
+    if (paren !== ')' && paren !== '(') {
+      throw new Error('Not a paren!')
+    }
+
+    if (paren === ')') {
+      if (!stack.isEmpty() && stack.peek() === '(') {
+        stack.pop()
+      } else {
+        stack.push(paren)
+      }
+    } else {
+      stack.push(paren)
     }
   }
-  return stack.count();
-};
+
+  return stack.count()
+}
+
+const input: string = '(((()(()()()))))'
+const result: number = numParensToRemove(input)
+console.log(result)

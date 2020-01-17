@@ -15,5 +15,3 @@ echo 'Installing dependencies ...'
 npm i
 code .
 npm t
-
-
