@@ -1,30 +1,18 @@
-package main
+package goldbachnumber
 
 import (
-	"fmt"
-	"strconv"
-	"strings"
 	"errors"
 	"math"
 )
 
-func main() {
-	testGoldbachNumbers(4, []int{2,2})
-	testGoldbachNumbers(8, []int{1,7})
-	testGoldbachNumbers(16, []int{3,13})
-	testGoldbachNumbers(20, []int{1,19})
-	testGoldbachNumbers(24, []int{1,23})
-}
-
-func goldbachNumberSmallestSolution(num int) ([]int, error) {
-	allSolutions, _ := goldbachNumbersAllSolutions(num)
+func GoldbachNumberSmallestSolution(num int) ([]int, error) {
+	allSolutions, _ := GoldbachNumbersAllSolutions(num)
 	
 	bestSolution := smallestSolution(allSolutions)
-	// fmt.Println("All solutions " + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(solutions)), ", "), ""))
 	return bestSolution, nil
 }
 
-func goldbachNumbersAllSolutions(num int) ([][]int, error) {
+func GoldbachNumbersAllSolutions(num int) ([][]int, error) {
 	if (num <= 2 && num % 2 != 0) {
 		return [][]int{}, errors.New("Number was not greater than 2 and even")
 	}
@@ -56,15 +44,6 @@ func smallestSolution(solutions [][]int) []int {
 	return currentBest
 }
 
-func testGoldbachNumbers(num int, expected []int)  {
-	result, err := goldbachNumberSmallestSolution(num)
-	passedTest := err == nil && arrayEqual(expected, result) 
-	if passedTest {
-		fmt.Println("Passed! Input: " + strconv.Itoa(num) + " Prime Pair: " + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(result)), ", "), "[]"))
-	} else {
-		fmt.Println("Failed! Expected: " + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(expected)), ", "), "[]") + "\nActual: " + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(result)), ", "), "[]"))
-	}
-}
 
 func arrayEqual(a []int, b []int) bool {
 	if len(a) != len(b) {
