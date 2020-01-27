@@ -1,0 +1,1 @@
+/mnt/c/Users/Lin01/source/repos/daily-coding-problem/rust/2020/jan/jan-24/contiguous-sum/target/debug/contiguous-sum: /mnt/c/Users/Lin01/source/repos/daily-coding-problem/rust/2020/jan/jan-24/contiguous-sum/src/main.rs
