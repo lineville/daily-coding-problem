@@ -7,7 +7,7 @@ in a folder on the date it was attempted with problem description, examples, sou
 
 ## Authors
 
-* **Liam Neville** *
+* **Liam Neville**
 
 
 ## License
