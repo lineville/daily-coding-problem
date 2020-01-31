@@ -1,1 +1,0 @@
-/mnt/c/Users/Lin01/source/repos/daily-coding-problem/rust/2020/jan/jan-26/palindrome-linked-list/target/debug/palindrome_linked_list-98f115d99fad290f: /mnt/c/Users/Lin01/source/repos/daily-coding-problem/rust/2020/jan/jan-26/palindrome-linked-list/src/main.rs
