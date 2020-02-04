@@ -1,21 +1,71 @@
-import BinaryTree from "./BinaryTree";
+// * Daily Coding Problem Feb 3rd 2020 2018
 
-// * Returns the binary tree node that is the lowest node in the tree beginning
-// * at the root for which node1 and node2 are both descendents.
-export function lowestCommonAncestor<T>(
-  root: BinaryTree<T>,
-  node1: BinaryTree<T>,
-  node2: BinaryTree<T>
-): BinaryTree<T> {
+// * [Hard] -- Google
 
-    // * The actual work
-    
-    // * If node2 is in the subtree then just return node1.parent
-    // * If node1 is in the subtree of node2 then return node2.parent
-    // * Otherwise they are both in different trees.
-    // * Start at node1.
-    // * Traverse up in the tree by parents and at each new node 
-    // * check if node2 is in subtree, if it is return the node we are at.
+// * Lowest Common Ancestor solution for BinaryTree
 
-    return root;
+export class Node<T> {
+  value: T;
+  left: Node<T> | null;
+  right: Node<T> | null;
+
+  constructor(value: T) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+export default class BinaryTree<T> {
+  root: Node<T>;
+  foundFirst: boolean;
+  foundSecond: boolean;
+
+  constructor(rootVal : T) {
+    this.root = new Node<T>(rootVal);
+    this.foundFirst = false;
+    this.foundSecond = false;
+  }
+
+  findLowestCommonAncestor = (node1: T, node2: T): Node<T> | null=> {
+    this.foundFirst = false;
+    this.foundSecond = false;
+    const lowestCommonAncestor : Node<T> | null = this.findLowestCommonAncestorHelper(this.root, node1, node2);
+
+    if (this.foundFirst && this.foundSecond) {
+      return lowestCommonAncestor;
+    }
+    return null;
+  };
+
+
+  findLowestCommonAncestorHelper = (node : Node<T> | null, node1 : T, node2 : T) : Node<T> | null=> {
+    if (node == null) {
+      return null;
+
+    }
+    let tempNode : Node<T> | null = null;
+    if (node.value === node1) {
+      this.foundFirst = true;
+      tempNode = node;
+    }
+    if (node.value === node2) {
+      this.foundSecond = true;
+      tempNode = node;
+    }
+
+    let leftLowestCommonAncestor : Node<T> | null = this.findLowestCommonAncestorHelper(node.left, node1, node2);
+    let rightLowestCommonAncestor : Node<T> | null = this.findLowestCommonAncestorHelper(node.right, node1, node2);
+
+    if (tempNode !== null) {
+      return tempNode;
+    }
+
+    if (leftLowestCommonAncestor !== null && rightLowestCommonAncestor !== null) {
+      return node;
+    }
+
+    return (leftLowestCommonAncestor !== null) ? leftLowestCommonAncestor : rightLowestCommonAncestor;
+
+  }
 }
