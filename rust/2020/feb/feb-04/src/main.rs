@@ -9,21 +9,22 @@
 
 // * Follow-up: given a mutable string representation, can you perform this operation in-place?
 
-fn reverse_words(s: &str) -> String {
-    let mut word_vec : Vec<&str> = s.split_whitespace().collect();
+// * Takes the input string, splits it on white space, maps each entry
+// * from &str to String, reverses the vector and joins those elements with whitespace
+fn reverse_words(s: String) -> String {
+    let mut word_vec : Vec<String> = s.split_whitespace().map(|w| w.to_string()).collect();
     word_vec.reverse();
-    let space_seperated = word_vec.join(" ");
-    space_seperated
+    word_vec.join(" ")
 }
 
 #[test]
 fn test_reverse_words() {
     let example = String::from("hello world here mister man");
-    let result = reverse_words(&example);
+    let result = reverse_words(example);
     assert_eq!(result, "man mister here world hello");
 }
 
 fn main() {
     let hello = String::from("hello world here  mister man");
-    println!("{}", reverse_words(&hello));
+    println!("{}", reverse_words(hello));
 }
