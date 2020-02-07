@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Basic from '../src/BasicTest';
+import Basic from '../src/Basic';
 
 describe('Basic', function() {
   it('Hello', function() {
