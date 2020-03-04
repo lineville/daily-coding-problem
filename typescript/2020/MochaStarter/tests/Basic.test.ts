@@ -1,10 +1,15 @@
 import { expect } from 'chai';
-import Basic from '../src/Basic';
 
-describe('Basic', function() {
-  it('Hello', function() {
-    let result = Basic.Hello('Liam');
-    expect(result).equal('Hi Liam');
+describe('Basic', () => {
+
+  beforeEach(() => {
+
+  })
+
+  
+  xit('Hello', () => {
+    const result : string = 'Hi Liam';
+    expect(result).to.equal('Hi Liam');
   });
 
 });
