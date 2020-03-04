@@ -15,3 +15,4 @@ echo 'Installing dependencies ...'
 npm i
 code .
 npm t
+rm src/Basic.ts tests/Basic.test.ts
