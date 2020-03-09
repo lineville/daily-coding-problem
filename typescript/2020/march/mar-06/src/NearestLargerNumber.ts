@@ -17,6 +17,9 @@ export const nearestLargerNumber = (
   let left: number = index - 1;
   let right: number = index + 1;
 
+  // nearestLargestNumber(currentVal, left, right)
+
+  // * Start at middle and go out towards either end until one end reaches the end
   while (left >= 0 && right < nums.length) {
     if (nums[left] > nums[index]) {
       return index - left;
@@ -29,7 +32,7 @@ export const nearestLargerNumber = (
     right++;
   }
 
-  // * One of the pointers hit the end so keep working on the other
+  // * One of the pointers hit the end so keep working on whichever is still in bounds
   while (left >= 0) {
     if (nums[left] > nums[index]) {
       return index - left;
@@ -44,5 +47,45 @@ export const nearestLargerNumber = (
     right++;
   }
 
+  // * There existed no largest number
+  return null;
+};
+
+export const nearestLargestV2 = (
+  nums: Array<number>,
+  index: number
+): number | null => {
+  const nearestLargestLeft = nearestLargestOneWay(
+    nums[index],
+    nums.slice(0, index),
+    false
+  );
+  const nearestLargestRight = nearestLargestOneWay(
+    nums[index],
+    nums.slice(index + 1),
+    true
+  );
+
+  if (nearestLargestLeft !== null && nearestLargestRight !== null) {
+    return Math.min(nearestLargestLeft, nearestLargestRight);
+  }
+
+  return nearestLargestLeft === null ? nearestLargestRight : nearestLargestLeft;
+};
+
+const nearestLargestOneWay = (
+  target: number,
+  nums: Array<number>,
+  reverse: boolean
+): number | null => {
+  if (reverse) {
+    for (let i = nums.length - 1; i >= 0; i--) {
+      if (nums[i] > target) return nums.length - i;
+    }
+  } else {
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] > target) return i + 1;
+    }
+  }
   return null;
 };
