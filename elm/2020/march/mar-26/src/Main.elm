@@ -36,37 +36,37 @@ postFixCalculate tokens =
 
 postFixHelper : List Token -> List Token -> Token
 postFixHelper tokens stack =
-    case ( head tokens, stack ) of
+    case ( tokens, stack ) of
         --- Non Empty List, stack has at least two tokens ---
-        ( Just top, first :: second :: rest ) ->
+        ( top :: tks, first :: second :: rest ) ->
             case top of
                 Operator op ->
-                    postFixHelper (Maybe.withDefault [] (tail tokens)) (evaluateTokens second op first :: rest)
+                    postFixHelper tks <| (evaluateTokens second op first :: rest)
 
                 Operand _ ->
-                    postFixHelper (Maybe.withDefault [] (tail tokens)) (top :: stack)
+                    postFixHelper tks <| (top :: stack)
 
                 Error ->
                     Error
 
         --- Non Empty List, stack has less than two tokens ---
-        ( Just top, _ ) ->
+        ( top :: tks, _ ) ->
             case top of
                 Operator _ ->
                     Error
 
                 Operand _ ->
-                    postFixHelper (Maybe.withDefault [] (tail tokens)) (top :: stack)
+                    postFixHelper tks <| (top :: stack)
 
                 Error ->
                     Error
 
         --- Empty List, Non Empty stack
-        ( Nothing, first :: _ ) ->
+        ( [], first :: _ ) ->
             first
 
         --- Empty List, Empty Stack
-        ( Nothing, _ ) ->
+        ( [], _ ) ->
             Error
 
 
