@@ -32,46 +32,34 @@ fn reverse_words_delimiters(s: String) -> String {
 }
 
 
-fn reverse_words_delimiters_v2(s: String) -> String {
-    let mut words : Vec<String> = Vec::new();
-    let mut delimiters : Vec<String> = Vec::new();
+fn reverse_words_delimiters_v2(word: String) -> String {
+    // let mut words : Vec<String> = Vec::new();
+    // let mut delimiters : Vec<String> = Vec::new();
     
 
-    let current_word_ref = &mut String::from("");
-    let current_delimiter_ref = &mut String::from("");
-    let mut previous_was_delim : bool = false;
+    // let current_word_ref = &mut String::from("");
+    // let current_delimiter_ref = &mut String::from("");
+    // let mut previous_was_delim : bool = false;
 
-    for (_, c) in s.chars().enumerate() {
-        if c.is_alphanumeric() {
-            if previous_was_delim && i != 0 {
-                delimiters.push(current_delimiter_ref.to_string());
-            }
-            current_word_ref.push(c);
-        } else {
-            // * This is a delimiters
-            if previous_was_delim {
-                current_word_ref.push(c);
-            } else {
-                words.push(current_word_ref.to_string());
+    // for (i, c) in word.chars().enumerate() {
+    //     if c.is_alphanumeric() {
+    //         if previous_was_delim && i != 0 {
+    //             delimiters.push(current_delimiter_ref.to_string());
+    //         }
+    //         current_word_ref.push(c);
+    //     } else {
+    //         // * This is a delimiters
+    //         if previous_was_delim {
+    //             current_word_ref.push(c);
+    //         } else {
+    //             words.push(current_word_ref.to_string());
 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 
-    s
+    word
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

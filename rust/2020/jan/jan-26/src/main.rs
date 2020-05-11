@@ -49,7 +49,6 @@ fn is_palindrome(mut linked_list: LinkedList<u32>) -> bool {
     return true;
 }
 
-
 // * Unit Tests! -- In rust it seems that UT are placed in same file
 // * by convention when testing private functionality.
 #[cfg(test)]
