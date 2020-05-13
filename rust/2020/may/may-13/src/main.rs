@@ -38,31 +38,41 @@ fn number_to_letter(number: u64) -> String {
 
 #[test]
 fn test_column_id_1() {
-    assert_eq!(column_id_iter(1), column_id_rec(1), "A");
+    assert_eq!(column_id_rec(1), "A");
+    assert_eq!(column_id_iter(1), "A");
 }
 
 #[test]
 fn test_column_id_2() {
-    assert_eq!(column_id_iter(26), column_id_rec(26), "Z");
+    assert_eq!(column_id_rec(26), "Z");
+    assert_eq!(column_id_iter(26), "Z");
 }
 
 
 #[test]
 fn test_column_id_3() {
-    assert_eq!(column_id_iter(27), column_id_rec(27), "AA");
+    assert_eq!(column_id_rec(27), "AA");
+    assert_eq!(column_id_iter(27), "AA");
 }
 
 #[test]
 fn test_column_id_4() {
-    assert_eq!(column_id_iter(51), column_id_rec(51), "YY");
+    assert_eq!(column_id_rec(51), "YY");
+    assert_eq!(column_id_iter(51), "YY");
 }
 
 
 #[test]
 fn test_column_id_5() {
-    assert_eq!(column_id_iter(52), column_id_rec(52), "ZZ");
+    assert_eq!(column_id_rec(52), "ZZ");
+    assert_eq!(column_id_iter(52), "ZZ");
 }
 
+#[test]
+fn test_column_id_6() {
+    assert_eq!(column_id_rec(100), "VVVV");
+    assert_eq!(column_id_iter(100), "VVVV");
+}
 
 // * Executes each version of the function to print out columns A, B, ... ZZZZZZ
 fn main() {
