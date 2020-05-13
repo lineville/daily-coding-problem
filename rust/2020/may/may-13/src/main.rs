@@ -34,71 +34,33 @@ fn number_to_letter(number: u64) -> String {
 }
 
 
-// * -------------------------------------- Iterative Tests --------------------------------------
+// * ----------------------------- Tests --------------------------------------
 
 #[test]
-fn test_column_id_iter1() {
-    let result = column_id_iter(1);
-    assert_eq!(result, "A");
+fn test_column_id_1() {
+    assert_eq!(column_id_iter(1), column_id_rec(1), "A");
 }
 
 #[test]
-fn test_column_id_iter2() {
-    let result = column_id_iter(26);
-    assert_eq!(result, "Z");
-}
-
-
-#[test]
-fn test_column_id_iter3() {
-    let result = column_id_iter(27);
-    assert_eq!(result, "AA");
-}
-
-#[test]
-fn test_column_id_iter4() {
-    let result = column_id_iter(51);
-    assert_eq!(result, "YY");
+fn test_column_id_2() {
+    assert_eq!(column_id_iter(26), column_id_rec(26), "Z");
 }
 
 
 #[test]
-fn test_column_id_iter5() {
-    let result = column_id_iter(52);
-    assert_eq!(result, "ZZ");
-}
-
-
-// * -------------------------------------- Recursive Tests --------------------------------------
-
-#[test]
-fn test_column_id_rec1() {
-    let result = column_id_rec(1);
-    assert_eq!(result, "A");
+fn test_column_id_3() {
+    assert_eq!(column_id_iter(27), column_id_rec(27), "AA");
 }
 
 #[test]
-fn test_column_id_rec2() {
-    let result = column_id_rec(26);
-    assert_eq!(result, "Z");
+fn test_column_id_4() {
+    assert_eq!(column_id_iter(51), column_id_rec(51), "YY");
 }
 
-#[test]
-fn test_column_id_rec3() {
-    let result = column_id_rec(27);
-    assert_eq!(result, "AA");
-}
 
 #[test]
-fn test_column_id_rec4() {
-    let result = column_id_rec(51);
-    assert_eq!(result, "YY");
-}
-
-#[test]
-fn test_column_id_rec5() {
-    let result = column_id_rec(52);
-    assert_eq!(result, "ZZ");
+fn test_column_id_5() {
+    assert_eq!(column_id_iter(52), column_id_rec(52), "ZZ");
 }
 
 
