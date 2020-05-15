@@ -5,7 +5,7 @@
 // * Given a string and a pattern, find the starting indices of all occurrences of the pattern in the string. 
 
 // ! Ex: "abracadabra" and the pattern "abr" --> [0, 7]
-#![feature(exclusive_range_pattern)]
+// #![feature(exclusive_range_pattern)]
 #![allow(dead_code)]
 
 fn pattern_indices(input: &str, pattern: &str) -> Vec<usize> {
@@ -33,24 +33,24 @@ fn test_pattern_indices() {
 fn number_to_english_words(num: u64) -> String {
     // * Opted to explicitly enumerate all the cases that can fit in u64 since it turns out there really aren't too many when grouped properly and max is 2^64.
     match num {
-        0..100 => sub_hundred_to_english_word(num),
+        0..=99 => sub_hundred_to_english_word(num),
         
-        100..1000 => [sub_hundred_to_english_word(num / 100), String::from("Hundred"), number_to_english_words(num % 100)].join(" "),
-        1000..100000 => [sub_hundred_to_english_word(num / 1000), String::from("Thousand"), number_to_english_words(num % 1000)].join(" "),
+        100..=999 => [sub_hundred_to_english_word(num / 100), String::from("Hundred"), number_to_english_words(num % 100)].join(" "),
+        1000..=99999 => [sub_hundred_to_english_word(num / 1000), String::from("Thousand"), number_to_english_words(num % 1000)].join(" "),
         
-        100000..1000000 => [sub_hundred_to_english_word(num / 100000), String::from("Hundred"), number_to_english_words(num % 100000)].join(" "),
-        1000000..100000000 => [sub_hundred_to_english_word(num / 1000000), String::from("Million"), number_to_english_words(num % 1000000)].join(" "),
+        100000..=999999 => [sub_hundred_to_english_word(num / 100000), String::from("Hundred"), number_to_english_words(num % 100000)].join(" "),
+        1000000..=99999999 => [sub_hundred_to_english_word(num / 1000000), String::from("Million"), number_to_english_words(num % 1000000)].join(" "),
         
-        100000000..1000000000 => [sub_hundred_to_english_word(num / 100000000), String::from("Hundred"), number_to_english_words(num % 100000000)].join(" "),
-        1000000000..100000000000 => [sub_hundred_to_english_word(num / 1000000000), String::from("Billion"), number_to_english_words(num % 1000000000)].join(" "),
+        100000000..=999999999 => [sub_hundred_to_english_word(num / 100000000), String::from("Hundred"), number_to_english_words(num % 100000000)].join(" "),
+        1000000000..=99999999999 => [sub_hundred_to_english_word(num / 1000000000), String::from("Billion"), number_to_english_words(num % 1000000000)].join(" "),
         
-        100000000000..1000000000000 => [sub_hundred_to_english_word(num / 100000000000), String::from("Hundred"), number_to_english_words(num % 100000000000)].join(" "),
-        1000000000000..100000000000000 => [sub_hundred_to_english_word(num / 1000000000000), String::from("Trillion"), number_to_english_words(num % 1000000000000)].join(" "),
+        100000000000..=999999999999 => [sub_hundred_to_english_word(num / 100000000000), String::from("Hundred"), number_to_english_words(num % 100000000000)].join(" "),
+        1000000000000..=99999999999999 => [sub_hundred_to_english_word(num / 1000000000000), String::from("Trillion"), number_to_english_words(num % 1000000000000)].join(" "),
         
-        100000000000000..1000000000000000 => [sub_hundred_to_english_word(num / 100000000000000), String::from("Hundred"), number_to_english_words(num % 100000000000000)].join(" "),
-        1000000000000000..100000000000000000 => [sub_hundred_to_english_word(num / 1000000000000000), String::from("Quadrillion"), number_to_english_words(num % 1000000000000000)].join(" "),
+        100000000000000..=999999999999999 => [sub_hundred_to_english_word(num / 100000000000000), String::from("Hundred"), number_to_english_words(num % 100000000000000)].join(" "),
+        1000000000000000..=99999999999999999 => [sub_hundred_to_english_word(num / 1000000000000000), String::from("Quadrillion"), number_to_english_words(num % 1000000000000000)].join(" "),
         
-        100000000000000000..1000000000000000000 => [sub_hundred_to_english_word(num / 100000000000000000), String::from("Hundred"), number_to_english_words(num % 100000000000000000)].join(" "),
+        100000000000000000..=999999999999999999 => [sub_hundred_to_english_word(num / 100000000000000000), String::from("Hundred"), number_to_english_words(num % 100000000000000000)].join(" "),
         1000000000000000000..=std::u64::MAX => [sub_hundred_to_english_word(num / 1000000000000000000), String::from("Quintillion"), number_to_english_words(num % 1000000000000000000)].join(" "),
     }
 }
