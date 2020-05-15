@@ -9,7 +9,6 @@
 
 // ! Ex: "2542540123" --> ["254.25.40.123", "254.254.0.123"]
 
-
 fn ip_addresses(ip: &str) -> Vec<String> {
     let mut addresses = vec![];
 
@@ -59,6 +58,130 @@ fn insert_char_at(ch: char, idx: usize, ip: String) -> String {
     }
     
     return result;
+}
+
+/*****
+ * * A password is considered strong if below conditions are all met:
+ * * It has at least 6 characters and at most 20 characters.
+ * * It must contain at least one lowercase letter, at least one uppercase letter, and at least one digit.
+ * * It must NOT contain three repeating characters in a row ("...aaa..." is weak, but "...aa...a..." is strong, assuming other conditions are met).
+*/
+
+fn strong_password(password: String) -> i32 {
+  let min_length : i32 = 6;
+  let max_length : i32 = 20;
+  
+  let mut changes_needed : i32 = 0;
+  
+  let mut contains_lower : bool = false;
+  let mut contains_upper : bool = false;
+  let mut contains_digit : bool = false;
+  let mut contains_streak : bool = false;
+
+  
+  // * Too short
+  if (password.len() as i32) < min_length {
+    changes_needed = min_length - password.len() as i32;
+    return changes_needed;
+  }
+
+  // * Too long
+  if (password.len() as i32) > max_length {
+    changes_needed = max_length - password.len() as i32;
+    return changes_needed;
+  }
+
+  // * Need to find how many occurrences of some three streak of letters occurs XXX
+
+  let mut streak_char : char = ' ';
+  let mut streak_count : usize = 1;
+
+  for c in password.chars() {
+    if c.is_lowercase() {
+      contains_lower = true;
+    }
+
+    if c.is_uppercase() {
+      contains_upper = true;
+    }
+
+    if c.is_ascii_digit() {
+      contains_digit = true;
+    }
+     
+    
+    if c == streak_char {
+      streak_count += 1;
+      if streak_count > 1 && streak_count % 3 == 0 {
+        changes_needed += 1;
+        contains_streak = true;
+      }
+    } else {
+      streak_count = 1;
+    }
+
+    streak_char = c;
+
+  }
+
+  if !contains_lower && changes_needed == 0 {
+    changes_needed += 1;
+  }
+
+  if !contains_upper && changes_needed == 0 {
+    changes_needed += 1;
+  }
+
+  if !contains_digit && changes_needed == 0 {
+    changes_needed += 1;
+  }
+
+
+  if contains_lower && contains_upper && contains_digit && !contains_streak {
+    return 0;
+  }
+
+  return changes_needed;
+}
+
+
+#[test]
+fn test_strong_password_1() {
+  assert_eq!(strong_password(String::from("password")), 2);
+}
+
+
+#[test]
+fn test_strong_password_2() {
+  assert_eq!(strong_password(String::from("Password")), 1);
+}
+
+
+#[test]
+fn test_strong_password_3() {
+  assert_eq!(strong_password(String::from("Password2")), 0);
+}
+
+
+#[test]
+fn test_strong_password_4() {
+  assert_eq!(strong_password(String::from("pass")), 2);
+}
+
+
+#[test]
+fn test_strong_password_5() {
+  assert_eq!(strong_password(String::from("Paaa2woood")), 2);
+}
+
+#[test]
+fn test_strong_password_6() {
+  assert_eq!(strong_password(String::from("Paaaaaa2woood")), 3);
+}
+
+#[test]
+fn test_strong_password_7() {
+  assert_eq!(strong_password(String::from("aaa123")), 1);
 }
 
 #[test]
