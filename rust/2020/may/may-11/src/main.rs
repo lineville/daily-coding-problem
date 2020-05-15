@@ -8,9 +8,11 @@
 // * If n is odd, the next number in the sequence is 3n + 1
 // * It is conjectured that every such sequence eventually reaches the number 1. Test this conjecture.
 
+// ! This conjecture remains unproven to this day!!
+
 // ! Bonus: What input n <= 1000000 gives the longest sequence?
 
-// * Expects a positive integer
+// * Expects a positive integer --> The last element of return vector should always be 1 based on conjecture.
 fn collatz_sequence(mut num: u128) -> Vec<u128> {
     let mut result = Vec::new();
     while num != 1 {
@@ -25,6 +27,7 @@ fn collatz_sequence(mut num: u128) -> Vec<u128> {
 }
 
 // * Finds n that produces largest collatz_sequence under max
+// * If verbose flag is true, each sequence will be printed
 fn longest_collatz_sequence(max: u128, verbose: bool) -> u128 {
     let mut longest = 0;
     let mut longest_input = 0;
