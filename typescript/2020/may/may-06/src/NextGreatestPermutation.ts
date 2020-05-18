@@ -16,8 +16,8 @@ export const nextGreatesPermuation = (n: number): number => {
     if (digits[i] < digits[i + 1]) {
       let digitsAfterPivot = digits.slice(i + 1);
 
-      let minIndex =
-        i + 1 + indexOfSmallestValueGreaterThanN(digits[i], digitsAfterPivot);
+      let minIndex = i + 1 +
+        indexOfSmallestValueGreaterThanN(digits[i], digitsAfterPivot);
 
       digits = swap(digits, i, minIndex);
 
@@ -43,7 +43,7 @@ const swap = (nums: Array<number>, i: number, j: number): Array<number> => {
 
 const indexOfSmallestValueGreaterThanN = (
   n: number,
-  nums: number[]
+  nums: number[],
 ): number => {
   let minIndex = 0;
   for (let i = 1; i < nums.length; i++) {
@@ -53,3 +53,5 @@ const indexOfSmallestValueGreaterThanN = (
   }
   return minIndex;
 };
+
+console.log(nextGreatesPermuation(48975));

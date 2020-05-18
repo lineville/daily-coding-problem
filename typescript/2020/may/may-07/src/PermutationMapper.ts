@@ -13,3 +13,5 @@ export const permutationMapper = (
   });
   return result;
 };
+
+console.log(permutationMapper([0, 1, 2, 3, 4], ["a", "b", "c", "d", "e"]))
