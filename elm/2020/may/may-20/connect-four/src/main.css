@@ -1,0 +1,60 @@
+/*
+  elm-hot creates an additional div wrapper around the app to make HMR possible.
+  This could break styling in development mode if you are using Elm UI.
+
+  More context in the issue:
+    https://github.com/halfzebra/create-elm-app/issues/320
+*/
+[data-elm-hot="true"] {
+  height: inherit;
+}
+
+body {
+  font-family: "Source Sans Pro", "Trebuchet MS", "Lucida Grande",
+    "Bitstream Vera Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  text-align: center;
+  color: #293c4b;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+img {
+  margin: 20px 0;
+  max-width: 200px;
+  border-radius: 50%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.selected {
+  list-style-position: inside;
+  border: 2px solid black;
+  /* border-radius: 25%; */
+  background: yellow;
+}
+
+#grid {
+  position: relative;
+  margin-top: 30px;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.row {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+}
