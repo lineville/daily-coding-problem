@@ -22,7 +22,6 @@ fn nth_sevenish_number(n : u32) -> u32 {
 
         for i in 0..length {
             if index >= n {
-                println!("Hit the break");
                 break;
             }
             sevenish_numbers.push(sevenish_numbers[i] + sevens);
