@@ -1,18 +1,18 @@
 #!/bin/zsh
 
+templateRepo=https://github.com/lineville/TypeScript-Mocha-Template
+
+echo "Gloning template project from: $templateRepo"
+
+git clone $templateRepo
+
 now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
 
-mkdir $now
-
-echo "Created directory: $now"
-
-cp ../../tsconfig.json $now
+echo "Renaming template to $now"
+mv TypeScript-Mocha-Template $now
 
 cd $now
-
-cp -r ../../MochaStarter/* .
 echo 'Installing dependencies ...'
 npm i
 code .
 npm t
-rm src/Basic.ts tests/Basic.test.ts
