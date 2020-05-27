@@ -12,6 +12,7 @@ echo "Renaming template to $now"
 mv TypeScript-Mocha-Template $now
 
 cd $now
+rm -rf .git
 echo 'Installing dependencies ...'
 npm i
 code .
