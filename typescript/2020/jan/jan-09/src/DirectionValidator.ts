@@ -21,27 +21,30 @@
  * * valid
  */
 
+type Coordinate = { x: number; y: number };
+export type Direction = "N" | "S" | "E" | "W" | "NW" | "NE" | "SW" | "SE";
+
 // * Checks if the list of directions create a logically valid map
 export const validDirections = (rules: Array<string>): boolean => {
   let isValid: boolean = true;
-  let map: { [s: string]: { x: number; y: number } } = {};
+  let map: { [s: string]: Coordinate } = {};
 
   // * Do this block for each rule
-  rules.forEach((rule: string, idx: number) => {
-    let [loc1, dir, loc2]: Array<string> = rule.split(" ");
+  rules.forEach((rule: string, index: number) => {
+    let [src, dir, dest] = rule.split(" ");
 
     // * Place the first one at the origin
-    if (idx === 0) {
-      map[loc1] = { x: 0, y: 0 };
-      map[loc2] = computeDirection(dir, map[loc1]);
+    if (index === 0) {
+      map[src] = { x: 0, y: 0 };
+      map[dest] = computeDirection(dir as Direction, map[src]);
     } else {
       // * Both locations already on the map
-      if (map[loc1] !== undefined && map[loc2] !== undefined) {
-        // * Move loc1 if constraint is not already satisfied by the map
+      if (map[src] !== undefined && map[dest] !== undefined) {
+        // * Move src if constraint is not already satisfied by the map
         // * After moving it, check all previous rules for validity
         if (!constraintSatisfied(rule, map)) {
-          map[loc1] = computeDirection(invertDir(dir), map[loc2]);
-          let prevRules: Array<string> = rules.slice(0, idx);
+          map[src] = computeDirection(invertDir(dir as Direction), map[dest]);
+          let prevRules: Array<string> = rules.slice(0, index);
           prevRules.forEach((rule: string) => {
             if (!constraintSatisfied(rule, map)) {
               isValid = false;
@@ -50,14 +53,14 @@ export const validDirections = (rules: Array<string>): boolean => {
         }
       }
 
-      // * Only loc1 is new, add it relative to loc2
-      if (map[loc1] === undefined) {
-        map[loc1] = computeDirection(invertDir(dir), map[loc2]);
+      // * Only src is new, add it relative to dest
+      if (map[src] === undefined) {
+        map[src] = computeDirection(invertDir(dir as Direction), map[dest]);
       }
 
-      // * Only loc2 is new, add it relative to loc1
-      if (map[loc2] === undefined) {
-        map[loc2] = computeDirection(dir, map[loc1]);
+      // * Only dest is new, add it relative to src
+      if (map[dest] === undefined) {
+        map[dest] = computeDirection(dir as Direction, map[src]);
       }
     }
   });
@@ -67,60 +70,75 @@ export const validDirections = (rules: Array<string>): boolean => {
 // * Checks if a given rule is satisfied by the given map
 export const constraintSatisfied = (
   rule: string,
-  map: { [s: string]: { x: number; y: number } }
+  map: { [s: string]: Coordinate }
 ): boolean => {
-  const [loc1, dir, loc2]: Array<string> = rule.split(" ");
-  switch (dir) {
+  const [src, dir, dest]: Array<string> = rule.split(" ");
+  switch (dir as Direction) {
     case "N":
-      return map[loc1].y > map[loc2].y;
+      return map[src].y > map[dest].y;
+
     case "S":
-      return map[loc1].y < map[loc2].y;
+      return map[src].y < map[dest].y;
+
     case "W":
-      return map[loc1].x < map[loc2].x;
+      return map[src].x < map[dest].x;
+
     case "E":
-      return map[loc1].x > map[loc2].x;
+      return map[src].x > map[dest].x;
+
     case "NW":
-      return map[loc1].x < map[loc2].x && map[loc1].y > map[loc2].y;
+      return map[src].x < map[dest].x && map[src].y > map[dest].y;
+
     case "NE":
-      return map[loc1].x > map[loc2].x && map[loc1].y > map[loc2].y;
+      return map[src].x > map[dest].x && map[src].y > map[dest].y;
+
     case "SW":
-      return map[loc1].x < map[loc2].x && map[loc1].y < map[loc2].y;
+      return map[src].x < map[dest].x && map[src].y < map[dest].y;
+
     case "SE":
-      return map[loc1].x > map[loc2].x && map[loc1].y < map[loc2].y;
+      return map[src].x > map[dest].x && map[src].y < map[dest].y;
+
     default:
-      throw new Error("Bad direction");
+      throw new Error("Should never get here, received an invalid direction");
   }
 };
 
+// * This function could be given
 // * Computes a new relative to the source coordinate with respect to direction
 export const computeDirection = (
-  dir: string,
-  srcCoord: { x: number; y: number }
-): { x: number; y: number } => {
+  dir: Direction,
+  srcCoord: Coordinate
+): Coordinate => {
   switch (dir) {
     case "N":
       return { x: srcCoord.x + 0, y: srcCoord.y - 1 };
+
     case "S":
       return { x: srcCoord.x + 0, y: srcCoord.y + 1 };
+
     case "E":
       return { x: srcCoord.x - 1, y: srcCoord.y + 0 };
+
     case "W":
       return { x: srcCoord.x + 1, y: srcCoord.y + 0 };
+
     case "NE":
       return { x: srcCoord.x - 1, y: srcCoord.y - 1 };
+
     case "NW":
       return { x: srcCoord.x + 1, y: srcCoord.y - 1 };
+
     case "SE":
       return { x: srcCoord.x - 1, y: srcCoord.y + 1 };
+
     case "SW":
       return { x: srcCoord.x + 1, y: srcCoord.y + 1 };
-    default:
-      throw new Error("Bad direction");
   }
 };
 
+// * This function could be given
 // * Inverts a direction string to its directional oposite
-export const invertDir = (dir: string): string => {
+export const invertDir = (dir: Direction): Direction => {
   switch (dir) {
     case "N":
       return "S";
@@ -138,7 +156,5 @@ export const invertDir = (dir: string): string => {
       return "NW";
     case "SW":
       return "NE";
-    default:
-      throw new Error("Bad direction");
   }
 };

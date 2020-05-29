@@ -16,9 +16,9 @@
  */
 
 export const numberOfIslands = (grid: Array<Array<number>>): number => {
-  let result: number = 0;
-  for (let i: number = 0; i < grid.length; i++) {
-    for (let j: number = 0; j < grid.length; j++) {
+  let result = 0;
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid.length; j++) {
       if (grid[i][j] == 1) {
         recHelper(grid, i, j);
         result++;
@@ -29,14 +29,14 @@ export const numberOfIslands = (grid: Array<Array<number>>): number => {
   return result;
 };
 
-const directions = [
-  [-1, 0],
-  [1, 0],
-  [0, -1],
-  [0, 1]
-];
-
 const recHelper = (grid: Array<Array<number>>, i: number, j: number): void => {
+  const directions = [
+    [-1, 0],
+    [1, 0],
+    [0, -1],
+    [0, 1],
+  ];
+  // * Check that i and j are not out of bounds and that space at i, j is not water (0) or visited (2)
   if (
     i < 0 ||
     i >= grid.length ||
@@ -48,9 +48,9 @@ const recHelper = (grid: Array<Array<number>>, i: number, j: number): void => {
     return;
   }
 
+  // * Mark this space as visited and make a recursive call in all directions
   grid[i][j] = 2;
-  directions.forEach((dir: Array<number>) : void => {
+  directions.forEach((dir: Array<number>): void => {
     recHelper(grid, i + dir[0], j + dir[1]);
   });
 };
-

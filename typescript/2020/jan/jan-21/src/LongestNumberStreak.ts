@@ -16,13 +16,13 @@ export const longestNumStreak = (nums: Array<number>): number => {
 
   nums.forEach((num: number) => {
     if (!set.has(num - 1)) {
-      let endOfSequence: number = num;
+      let endOfSequence = num;
       while (set.has(endOfSequence)) {
-        endOfSequence++
+        endOfSequence++;
       }
 
       if (endOfSequence - num > result) {
-        result = endOfSequence - num
+        result = endOfSequence - num;
       }
     }
   });

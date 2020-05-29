@@ -17,8 +17,6 @@ export const nearestLargerNumber = (
   let left: number = index - 1;
   let right: number = index + 1;
 
-  // nearestLargestNumber(currentVal, left, right)
-
   // * Start at middle and go out towards either end until one end reaches the end
   while (left >= 0 && right < nums.length) {
     if (nums[left] > nums[index]) {

@@ -3,7 +3,8 @@ import {
   validDirections,
   constraintSatisfied,
   invertDir,
-  computeDirection
+  computeDirection,
+  Direction,
 } from "./../src/DirectionValidator";
 
 describe("Direction Validator", () => {
@@ -32,7 +33,7 @@ describe("Constraint Checker", () => {
   it("constraintSatisfied : N", () => {
     let result = constraintSatisfied("A N B", {
       A: { x: 0, y: 0 },
-      B: { x: 0, y: -1 }
+      B: { x: 0, y: -1 },
     });
     expect(result).to.be.true;
   });
@@ -40,7 +41,7 @@ describe("Constraint Checker", () => {
   it("constraintSatisfied: S", () => {
     let result = constraintSatisfied("A S B", {
       A: { x: 0, y: 0 },
-      B: { x: 0, y: 1 }
+      B: { x: 0, y: 1 },
     });
     expect(result).to.be.true;
   });
@@ -48,7 +49,7 @@ describe("Constraint Checker", () => {
   it("constraintSatisfied: W", () => {
     let result = constraintSatisfied("A W B", {
       A: { x: 0, y: 0 },
-      B: { x: 1, y: 0 }
+      B: { x: 1, y: 0 },
     });
     expect(result).to.be.true;
   });
@@ -56,7 +57,7 @@ describe("Constraint Checker", () => {
   it("constraintSatisfied : E", () => {
     let result = constraintSatisfied("A E B", {
       A: { x: 1, y: 0 },
-      B: { x: 0, y: 0 }
+      B: { x: 0, y: 0 },
     });
     expect(result).to.be.true;
   });
@@ -64,7 +65,7 @@ describe("Constraint Checker", () => {
   it("constraintSatisfied : NW", () => {
     let result = constraintSatisfied("A NW B", {
       A: { x: 0, y: 0 },
-      B: { x: 1, y: -1 }
+      B: { x: 1, y: -1 },
     });
     expect(result).to.be.true;
   });
@@ -72,7 +73,7 @@ describe("Constraint Checker", () => {
   it("constraintSatisfied : NE", () => {
     let result = constraintSatisfied("A NE B", {
       A: { x: 0, y: 0 },
-      B: { x: -1, y: -1 }
+      B: { x: -1, y: -1 },
     });
     expect(result).to.be.true;
   });
@@ -80,7 +81,7 @@ describe("Constraint Checker", () => {
   it("constraintSatisfied : SW", () => {
     let result = constraintSatisfied("A SW B", {
       A: { x: 0, y: 0 },
-      B: { x: 1, y: 1 }
+      B: { x: 1, y: 1 },
     });
     expect(result).to.be.true;
   });
@@ -88,19 +89,9 @@ describe("Constraint Checker", () => {
   it("constraintSatisfied : SE", () => {
     let result = constraintSatisfied("A SE B", {
       A: { x: 0, y: 0 },
-      B: { x: -1, y: 1 }
+      B: { x: -1, y: 1 },
     });
     expect(result).to.be.true;
-  });
-  it("constraintSatisfied : WEAST", () => {
-    assert.throw(
-      () =>
-        constraintSatisfied("A WEAST B", {
-          A: { x: 0, y: 0 },
-          B: { x: 1, y: 1 }
-        }),
-      "Bad direction"
-    );
   });
 });
 
@@ -144,10 +135,6 @@ describe("Invert Direction", () => {
     let result = invertDir("SE");
     expect(result).to.equal("NW");
   });
-
-  it("Invert Dir : WEAST", () => {
-    assert.throw(() => invertDir("WEAST"), "Bad direction");
-  });
 });
 
 describe("Compute Direction", () => {
@@ -182,11 +169,5 @@ describe("Compute Direction", () => {
   it("Direction: SE", () => {
     let result = computeDirection("SE", { x: 0, y: 0 });
     expect(result).to.eql({ x: -1, y: 1 });
-  });
-  it("Direction WEAST", () => {
-    assert.throw(
-      () => computeDirection("WEAST", { x: 0, y: 0 }),
-      "Bad direction"
-    );
   });
 });
