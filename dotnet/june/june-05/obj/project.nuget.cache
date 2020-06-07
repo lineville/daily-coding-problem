@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5KowqknEPBL3JKI037sFQXqR6Rj8hVJmJqEXqD81t/Yb/Su8U7AYps1Q52YT0TPzVXv+B8W2G/ghHfqH4J42KQ==",
+  "success": true,
+  "projectFilePath": "/mnt/c/Users/Lin01/dev/daily-coding-problem/dotnet/june/june-05/june-05.csproj",
+  "expectedPackageFiles": [
+    "/mnt/c/Users/Lin01/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.2/microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
