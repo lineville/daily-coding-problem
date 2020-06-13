@@ -18,45 +18,45 @@
 export const calculateHIndexBetter = (citations: Array<number>): number => {
   // * Trivial case (this should not happen usually)
   if (citations.length < 0) {
-    return 0;
+    return 0
   }
 
   // * Base Case
   if (citations.length === 1) {
-    return citations[0] > 0 ? citations.length : 0;
+    return citations[0] > 0 ? citations.length : 0
   }
 
-  let result = 1;
+  let result = 1
   for (const [c, idx] of citations.entries()) {
     if (c >= idx + 1) {
-      result++;
+      result++
     }
   }
-  return result;
-};
+  return result
+}
 
 // * O(N^2) since this loop is O(N) and calls hasIndex which is O(N) itself
 export const calculateHIndex = (citations: Array<number>): number => {
-  let hIndex = citations.length;
+  let hIndex = citations.length
   while (hIndex > 0) {
     if (hasHIndex(hIndex, citations)) {
-      return hIndex;
+      return hIndex
     }
-    hIndex--;
+    hIndex--
   }
 
-  return hIndex;
-};
+  return hIndex
+}
 
 // * O(N)
 const hasHIndex = (hIndex: number, citations: Array<number>): boolean => {
-  let citationsWithAtleastH = 0;
+  let citationsWithAtleastH = 0
 
   for (const c of citations) {
     if (c >= hIndex) {
-      citationsWithAtleastH++;
+      citationsWithAtleastH++
     }
   }
 
-  return citationsWithAtleastH >= hIndex;
-};
+  return citationsWithAtleastH >= hIndex
+}
