@@ -15,5 +15,5 @@ cd $now
 rm -rf .git
 echo 'Installing dependencies ...'
 npm i
-code .
+code-insiders .
 npm t
