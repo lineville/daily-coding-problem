@@ -11,17 +11,18 @@
 
 use math::round;
 
-fn egyptian_fraction(num: u32, den: u32, denoms: Vec<u32>, idx: usize) -> Vec<u32> {
+fn egyptian_fraction(num: u32, den: u32, mut denoms: Vec<u32>, idx: usize) -> Vec<u32> {
     if num == 1 {
         denoms.push(den);
     } else {
-        let nextDenom = round::ceil(den / num);
+        let next_denom = round::ceil((den / num).into(), 0) as u32;
+        denoms.push(next_denom);
+        let gcd = greatest_common_divisor(num * next_denom - den, den * next_denom);
+        return egyptian_fraction(round::floor((num * next_denom - den) / gcd, 0), round);
     }
     return denoms;
 }
 
-
 fn main() {
     println!("Egyptian fraction of 4 / 13");
 }
-
