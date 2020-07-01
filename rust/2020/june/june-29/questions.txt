@@ -1,0 +1,11 @@
+Scan is adding to samples, test request listbox can fetch data from test requests but is using
+existing just all samples not fetching by sample.
+
+should the api to fetch test requests for a given sample use the existing test request controller
+using new tab id 10 or create new controller seperately for this one?
+
+How exactly should the bag functionality work and have you heard anything from kanika?
+
+sample submitted (list of samples, list of tr) to mark delivered
+
+one test request and bag and bin per transaction right now
