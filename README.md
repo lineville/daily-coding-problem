@@ -1,13 +1,9 @@
 # Daily Coding Problem Solutions
 
-My personal repository for all of my Daily Coding Problem attempts. Problem solutions are
-completed in TypeScript, Go, Rust, Python and more languages to come. Each problem is contained
-in a folder on the date it was attempted with problem description, examples, source code and unit tests.
+Daily Coding Problem attempts and solutions written in TypeScript, Rust, Go, .NET, Python and others. 
+Each problem is contained in a folder on the date it was attempted with problem description, examples, source code and unit tests.
 
-
-## Authors
-
-* **Liam Neville**
+Author: [Liam Neville](https://liamneville.me)
 
 
 ## License
