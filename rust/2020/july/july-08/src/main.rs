@@ -19,7 +19,8 @@ use std::fmt;
 
 const BOARD_SIZE: usize = 8;
 
-#[derive(Clone)]
+// * All the possible values that a space on the board can take
+#[derive(Clone)] // * This lets use populate vectors with Pieces
 enum Piece {
     Pawn,
     Rook,
@@ -30,6 +31,8 @@ enum Piece {
     Empty,
 }
 
+// * Custom print implementation allows us to use descriptive names in code
+// * but have the shortened simplified versions printed out on the board.
 impl fmt::Debug for Piece {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {
@@ -44,6 +47,7 @@ impl fmt::Debug for Piece {
     }
 }
 
+// * Checks if the king on the board can be attacked by any of the opponent's pieces
 fn check_mate(board: Vec<Vec<Piece>>) -> bool {
     let king_location = find_king(&board);
 
@@ -57,6 +61,7 @@ fn check_mate(board: Vec<Vec<Piece>>) -> bool {
     false
 }
 
+// * Checks if a piece located at (i, j) can attack the king at king_location
 fn can_attack_king(piece: &Piece, i: usize, j: usize, king_location: (usize, usize)) -> bool {
     match piece {
         Piece::Pawn => check_pawn(i, j, king_location),
@@ -101,6 +106,7 @@ fn check_queen(row: usize, col: usize, king_location: (usize, usize)) -> bool {
     check_bishop(row, col, king_location) || check_rook(row, col, king_location)
 }
 
+// * Finds the location of the king on the board
 fn find_king(board: &Vec<Vec<Piece>>) -> (usize, usize) {
     for (i, row) in board.iter().enumerate() {
         for (j, piece) in row.iter().enumerate() {
