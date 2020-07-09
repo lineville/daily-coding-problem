@@ -54,7 +54,6 @@ fn check_mate(board: Vec<Vec<Piece>>) -> bool {
             }
         }
     }
-
     false
 }
 
