@@ -2,8 +2,8 @@
 
 // * [Easy] -- Microsoft
 
-// * You are given an string representing the initial conditions of
-// * some dominoes. Each element can take one of three values:
+// * You are given an string representing the initial conditions of some dominoes.
+// * Each element can take one of three values:
 
 // * L meaning the domino has just been pushed to the left,
 // * R meaning the domino has just been pushed to the right, or
