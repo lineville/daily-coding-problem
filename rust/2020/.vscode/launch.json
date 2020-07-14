@@ -2,16 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(lldb) Launch",
-      "type": "cppdbg",
+      "name": "(OSX) Launch",
+      "type": "lldb",
       "request": "launch",
-      "program": "${workspaceRoot}/target/debug/july-01",
+      "program": "${workspaceRoot}/target/debug/jul-14",
       "args": [],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "lldb"
+      "cwd": "${workspaceRoot}"
     }
   ]
 }
