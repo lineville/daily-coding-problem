@@ -84,18 +84,53 @@ fn other_qux(first: &Qux, second: &Qux) -> Qux {
     }
 }
 
+fn least_number_transformations(quxes: &Vec<Qux>) -> u32 {
+    let mut result = 0;
+    let mut quxes = quxes.to_owned();
+    while quxes.len() > 1 {
+        quxes = transform(quxes);
+        result += 1;
+    }
+    return result;
+}
+
+#[test]
+fn test_other_qux() {
+    assert_eq!(other_qux(&Qux::Blue, &Qux::Green), Qux::Red);
+}
+
+#[test]
+fn test_transform() {
+    assert_eq!(
+        transform(vec![Qux::Red, Qux::Green, Qux::Blue, Qux::Green, Qux::Blue]),
+        vec![Qux::Blue, Qux::Blue, Qux::Green, Qux::Blue]
+    )
+}
+
+#[test]
+fn test_least_number_transformations() {
+    assert_eq!(
+        least_number_transformations(&vec![
+            Qux::Red,
+            Qux::Green,
+            Qux::Blue,
+            Qux::Green,
+            Qux::Blue
+        ]),
+        4
+    );
+}
+
 fn main() {
     let mut quxes: Vec<Qux> = vec![Qux::Red, Qux::Green, Qux::Blue, Qux::Green, Qux::Blue];
-    // let mut quxes: Vec<Qux> = vec![Qux::Blue, Qux::Blue, Qux::Blue, Qux::Blue];
-    let mut transformations = -1;
-    while quxes.len() > 0 {
-        println!("Quxes -> {:?}", quxes);
+    println!("Quxes -> {:?}", quxes);
+    while quxes.len() > 1 {
         quxes = transform(quxes);
-        transformations += 1;
+        println!("Quxes -> {:?}", quxes);
     }
     println!(
         "{:?} transformations to arrive at {} remaining qux.",
-        transformations,
+        least_number_transformations(&quxes),
         quxes.len()
     );
 }
