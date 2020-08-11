@@ -9,4 +9,4 @@ target
 **/*.lock
 out
 **/*/Debug/
-__pycache__
+**/*/__pycache__
