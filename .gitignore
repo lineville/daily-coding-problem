@@ -10,3 +10,4 @@ target
 out
 **/*/Debug/
 **/*/__pycache__
+.vscode
