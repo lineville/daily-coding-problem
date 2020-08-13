@@ -9,7 +9,21 @@
 #  * Bonus: When, during the course of a day, will the angle be zero?
 # TODO : Implement the bonus part!
 
+# * Written by Linda Li
+def zero():
+    result = []
+    for hour in range(1, 13):
+        for minute in range(0, 60):
+            minute = f"0{minute}" if minute < 10 else minute
+            time = f"{hour}:{minute}"
+            degrees = closestDegrees(time)
+            if degrees == 0:
+                result.append(time)
+    return result
+
 # * Returns the closestDegrees between the hour and the minute hands at time
+
+
 def closestDegrees(time):
     # * Parse the hours and minutes
     hours, minutes = parseTime(time)

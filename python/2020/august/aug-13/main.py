@@ -1,4 +1,4 @@
-from clock import closestDegrees
+from clock import zero, closestDegrees
 
 # * ____________________________MAIN_________________________________
 
@@ -7,6 +7,8 @@ from clock import closestDegrees
 
 
 def main():
+    result = zero()
+    print(result)
     shouldKeepGoing = True
     while shouldKeepGoing:
         time = input("Please enter a time in the format: hh:mm --> ")

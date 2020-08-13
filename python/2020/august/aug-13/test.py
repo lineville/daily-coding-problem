@@ -1,4 +1,4 @@
-from main import closestDegrees
+from main import closestDegrees, zero
 
 # * ____________________________TESTS_________________________________
 
@@ -17,3 +17,7 @@ def testNine():
 
 def testFiveFortyEight():
     assert closestDegrees("5:48") == 114
+
+
+def testZero():
+    assert zero() == ['12:00']
