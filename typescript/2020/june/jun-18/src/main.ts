@@ -8,10 +8,17 @@
 // * or direct comparisons.
 
 export const max = (x: number, y: number): number => {
+  // I truly don't understand how this works but it technically does not use any comparison
+  // but I would never really want someone else to try to read this and understand it either
   return x ^ ((x ^ y) & -(x < y))
-}
 
-// ! This does use direct comparison and would be preferable in most cases for readability.
-export const maxSimple = (x: number, y: number): number => {
-  return x >= y ? x : y
+  // * This one is what I would actually use and is way less confusing
+  // return x >= y ? x : y
+
+  // * Or even more simple ...
+  // if x >= y {
+  //   return x;
+  // } else {
+  //   return y;
+  // }
 }
