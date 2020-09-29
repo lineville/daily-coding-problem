@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
 echo "Creating Rust Project for $now"
@@ -7,5 +7,5 @@ cp -rp  "../.vscode/" $now
 cd $now
 echo "Building Project"
 cargo build
-echo "Opening in VS Code Insiders"
-code-insiders .
+echo "Opening in VS Code"
+code .
