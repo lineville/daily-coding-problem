@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
 echo "Creating Rust Project for $now"

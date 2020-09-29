@@ -71,10 +71,6 @@ fn remove_consecutive_similar_sounding_consonants(sound: &str) -> String {
             }
         }
     }
-
-    // ! SET FLAG
-    // }
-
     return result;
 }
 
