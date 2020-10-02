@@ -25,7 +25,7 @@ fn num_one_bits(n: u32) -> usize {
 
 fn main() {
     println!("Next biggest number with same number of 1-bits!");
-    let n = 6;
+    let n = 100;
     println!("{} ({:b})", n, n);
     let next_biggest = next_biggest_same_one_bits(n);
     println!("{} ({:b})", next_biggest, next_biggest);
@@ -36,4 +36,9 @@ fn main() {
 #[test]
 fn test_next_biggest_same_one_bits() {
     assert_eq!(next_biggest_same_one_bits(6), 9);
+}
+
+#[test]
+fn test_next_biggest_same_one_bits_2() {
+    assert_eq!(next_biggest_same_one_bits(100), 104);
 }
