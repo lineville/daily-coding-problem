@@ -11,10 +11,12 @@
 fn strobogrammatic_numbers(n: u32) -> Vec<u32> {
     let mut result = Vec::new();
 
-    if n == 0 {
+    // * Simple case : no strobogrammatic numbers
+    if n < 1 {
         return result;
     }
 
+    // * Special case : starting indice is 0 not 1
     if n == 1 {
         for i in 0..10 {
             if is_strobogrammatic(i) {
@@ -22,9 +24,8 @@ fn strobogrammatic_numbers(n: u32) -> Vec<u32> {
             }
         }
     }
-    // 1 => 0..9
-    // 2 => 10..100
-    // 3 => 100..1000
+    
+    // * Strobogrammatic numbers from 10^(n - 1) through 10^n
     if n > 1 {
         let start_idx = 10u32.pow(n - 1);
         let end_idx = start_idx * 10;
@@ -40,17 +41,14 @@ fn strobogrammatic_numbers(n: u32) -> Vec<u32> {
 
 // * Checks if a number is strobogrammatic
 fn is_strobogrammatic(n: u32) -> bool {
-    // If it has a a 3, 4, 7 then false
     let digits = number_to_digits(n);
-    let unflippable_digits = digits
-        .iter()
-        .filter(|d| vec![3, 4, 7].contains(&d))
-        .collect::<Vec<_>>();
-    if unflippable_digits.len() > 0 {
-        return false;
-    }
-    // If the flipped number is same as the original
-    n == flip(n)
+    // * To be strobogrammatic, there must be no unflippable digits, and the flipped
+    // * number must equal the original number
+    return if !digits.iter().any(|d| is_unflippable(*d)) { n == flip(n) } else { false };
+}
+
+fn is_unflippable(n: u32) -> bool {
+    vec![3, 4, 7].contains(&n)
 }
 
 // * Flips an entire number 180 degrees
