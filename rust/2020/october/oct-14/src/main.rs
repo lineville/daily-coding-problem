@@ -140,3 +140,81 @@ fn main() {
     println!("Pull {:?}", pulled);
     q.show();
 }
+
+// _______________________________TESTS__________________________
+
+#[test]
+fn test_push() {
+    let mut q = Quack::<u32> {
+        stack1: Stack { values: vec![] },
+        stack2: Stack { values: vec![] },
+        stack3: Stack { values: vec![] },
+        size: 0,
+    };
+
+    q.push(1);
+    q.push(2);
+    q.push(3);
+
+    assert_eq!(q.size, 3);
+}
+
+#[test]
+fn test_pull() {
+    let mut q = Quack::<u32> {
+        stack1: Stack { values: vec![] },
+        stack2: Stack { values: vec![] },
+        stack3: Stack { values: vec![] },
+        size: 0,
+    };
+
+    q.push(1);
+    q.push(2);
+    q.push(3);
+
+    let pulled = q.pull().unwrap();
+    assert_eq!(pulled, 1);
+}
+
+#[test]
+fn test_pop() {
+    let mut q = Quack::<u32> {
+        stack1: Stack { values: vec![] },
+        stack2: Stack { values: vec![] },
+        stack3: Stack { values: vec![] },
+        size: 0,
+    };
+
+    q.push(1);
+    q.push(2);
+    q.push(3);
+
+    let popped = q.pop().unwrap();
+    assert_eq!(popped, 3);
+}
+
+#[test]
+fn test_pop_empty() {
+    let mut q = Quack::<u32> {
+        stack1: Stack { values: vec![] },
+        stack2: Stack { values: vec![] },
+        stack3: Stack { values: vec![] },
+        size: 0,
+    };
+
+    let popped = q.pop();
+    assert_eq!(popped, None);
+}
+
+#[test]
+fn test_pull_empty() {
+    let mut q = Quack::<u32> {
+        stack1: Stack { values: vec![] },
+        stack2: Stack { values: vec![] },
+        stack3: Stack { values: vec![] },
+        size: 0,
+    };
+
+    let pulled = q.pull();
+    assert_eq!(pulled, None);
+}
