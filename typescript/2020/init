@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 templateRepo=https://github.com/lineville/TypeScript-Mocha-Template
 
@@ -14,6 +14,6 @@ mv TypeScript-Mocha-Template $now
 cd $now
 rm -rf .git
 echo 'Installing dependencies ...'
-npm i
+npm install
 code .
-npm t
+npm test
