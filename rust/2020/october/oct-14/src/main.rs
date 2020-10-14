@@ -18,7 +18,7 @@ where
     fn push(&mut self, item: T);
     fn pop(&mut self) -> Option<T>;
     fn peek(&self) -> Option<T>;
-    fn isEmpty(&self) -> bool;
+    fn is_empty(&self) -> bool;
     fn clear(&mut self);
 }
 
@@ -35,13 +35,13 @@ where
     }
 
     fn peek(&self) -> Option<T> {
-        match self.isEmpty() {
+        match self.is_empty() {
             true => None,
             false => Some(self.values[self.values.len() - 1]),
         }
     }
 
-    fn isEmpty(&self) -> bool {
+    fn is_empty(&self) -> bool {
         self.values.len() == 0
     }
 
@@ -97,8 +97,8 @@ where
             self.stack1.clear();
             self.stack2.clear();
             return None;
-        } else if self.stack3.isEmpty() {
-            while !self.stack2.isEmpty() {
+        } else if self.stack3.is_empty() {
+            while !self.stack2.is_empty() {
                 self.stack3.push(self.stack2.pop().take().unwrap());
             }
         }
