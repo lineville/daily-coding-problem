@@ -1,8 +1,6 @@
-# Daily Coding Problems
+## [MONTH] [DATE]
 
-## [MONTH][date] [YEAR]
-
-- **Difficulty**: [EASY/MEDIUM/HARD]
+- **Difficulty**: [DIFFICULTY]
 
 - **Asked By**: [COMPANY]
 
@@ -12,6 +10,6 @@
 
 - **Explanation**: [EXPLANATION]
 
-```[language]
-code here ...
+```[LANG]
+[SOLUTION]
 ```
