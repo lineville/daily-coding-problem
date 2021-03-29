@@ -1,5 +1,5 @@
 <template>
-  <NumberGrid rows="10" columns="25" />
+  <NumberGrid rows="10" columns="25" maxNumber="10" />
 </template>
 
 <script lang="ts">
