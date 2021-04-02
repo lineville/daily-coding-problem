@@ -1,6 +1,5 @@
 <template>
   <h3>Chess Board</h3>
-  <!-- TEST -->
 
   <ul>
     <li v-for="row in board()" v-bind:key="row">
