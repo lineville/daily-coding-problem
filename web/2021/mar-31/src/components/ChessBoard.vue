@@ -2,10 +2,30 @@
   <h3>Chess Board</h3>
 
   <ul>
-    <li v-for="row in board" v-bind:key="row">
+    <li v-for="row in board()" v-bind:key="row">
       <span v-for="cell in row" v-bind:key="cell">{{ cell }}</span>
     </li>
   </ul>
+
+  <label for="newBishopRow">Row</label>
+  <input
+    id="newBishopRow"
+    v-model="newBishopRow"
+    type="number"
+    min="0"
+    :max="size - 1"
+  />
+
+  <label for="newBishopColumn">Column</label>
+  <input
+    id="newBishopColumn"
+    v-model="newBishopColumn"
+    type="number"
+    min="0"
+    :max="size - 1"
+  />
+
+  <button @click="addBishop">Add Bishop</button>
 
   <p>Attacking Pairs: {{ attackingPairs }}</p>
 </template>
@@ -22,23 +42,12 @@ export default defineComponent({
         { id: 2, x: 1, y: 2 },
         { id: 3, x: 2, y: 2 },
         { id: 4, x: 4, y: 0 },
-        { id: 5, x: 3, y: 1 },
       ],
+      newBishopRow: 0,
+      newBishopColumn: 0,
     }
   },
   computed: {
-    board(): Array<Array<string>> {
-      let board = new Array(this.size)
-      for (let i = 0; i < this.size; i++) {
-        board[i] = new Array(this.size)
-        for (let j = 0; j < this.size; j++) {
-          const isBishop = this.bishops.filter((b) => b.x === i && b.y === j)
-            .length
-          board[i][j] = isBishop ? '♝' : '_'
-        }
-      }
-      return board
-    },
     attackingPairs(): Array<[number, number]> {
       let pairs = new Array<[number, number]>()
       this.bishops.forEach((b, i) => {
@@ -53,6 +62,27 @@ export default defineComponent({
       return pairs
     },
   },
+  methods: {
+    board(): Array<Array<string>> {
+      let board = new Array(this.size)
+      for (let i = 0; i < this.size; i++) {
+        board[i] = new Array(this.size)
+        for (let j = 0; j < this.size; j++) {
+          const isBishop = this.bishops.filter((b) => b.x === i && b.y === j)
+            .length
+          board[i][j] = isBishop ? '♝' : '_'
+        }
+      }
+      return board
+    },
+    addBishop() {
+      this.bishops.push({
+        id: this.bishops.length + 1,
+        x: this.newBishopRow,
+        y: this.newBishopColumn,
+      })
+    },
+  },
 })
 </script>
 
@@ -63,5 +93,17 @@ span {
 
 ul {
   list-style: none;
+}
+
+input {
+  margin: 5px;
+}
+
+#newBishopColumn {
+  max-width: 40px;
+}
+
+#newBishopRow {
+  max-width: 40px;
 }
 </style>
