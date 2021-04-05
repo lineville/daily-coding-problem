@@ -1,7 +1,7 @@
 {
-  "name": "mar-31",
+  "name": "apr-05",
   "version": "0.0.0",
-  "licencse": "MIT",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
