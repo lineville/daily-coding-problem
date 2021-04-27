@@ -58,7 +58,7 @@
 
   <hr />
 
-  <div id="outputNumbersContainer">
+  <div id="outputNumbersContainer" v-if="false">
     <span
       v-for="(num, idx) in outputNumbers"
       v-bind:key="idx"
@@ -89,9 +89,9 @@ export default defineComponent({
       outputNumbers: new Array<Number>(),
       stopped: false,
       clockwise: true,
-      maxSpeed: 1500,
+      maxSpeed: 2000,
       visitedColor: '#00FFFF',
-      speed: 1400, // ms per iteration of the simulation
+      speed: 2000, // ms per iteration of the simulation
     }
   },
   computed: {
