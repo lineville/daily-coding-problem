@@ -25,6 +25,7 @@ fn numbers_smaller_to_right(nums: &[i32]) -> Vec<u32> {
     return result;
 }
 
+
 fn main() {
     let nums = vec![3, 4, 9, 6, 1];
     println!("{:?} --> {:?}", nums, numbers_smaller_to_right(&nums));
