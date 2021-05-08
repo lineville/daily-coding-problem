@@ -5,7 +5,7 @@
       "name": "(OSX) Launch",
       "type": "lldb",
       "request": "launch",
-      "program": "${workspaceRoot}/target/debug/jul-14",
+      "program": "${workspaceRoot}/target/debug/may-02",
       "args": [],
       "cwd": "${workspaceRoot}"
     }

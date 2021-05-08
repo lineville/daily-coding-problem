@@ -11,7 +11,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "label": "Rust: cargo build - july-14"
+      "label": "Rust: cargo build - may-02"
     },
     {
       "type": "cargo",
@@ -21,7 +21,7 @@
         "kind": "test",
         "isDefault": true
       },
-      "label": "Rust: cargo test - july-14"
+      "label": "Rust: cargo test - may-02"
     }
   ]
 }
