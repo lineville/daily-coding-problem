@@ -1,0 +1,11 @@
+#!/bin/bash
+
+now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
+echo "Creating .NET Project for $now"
+mkdir $now
+cd $now
+dotnet new console
+echo "Building Project"
+dotnet build
+echo "Opening in VS Code"
+code .
