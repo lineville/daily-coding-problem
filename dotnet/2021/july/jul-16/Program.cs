@@ -35,9 +35,11 @@ namespace jul_16
                 }
             }
 
+            // Edge case after we have finished, if there is anything remaining in currentIntersection,
+            // then we must learn one more drink
             if (currentIntersection.Count != 0)
             {
-                drinksLearned += currentIntersection.Count;
+                drinksLearned++;
             }
 
             return drinksLearned;
