@@ -1,0 +1,19 @@
+#!/bin/bash
+
+templateRepo=https://github.com/lineville/TypeScript-Mocha-Template
+
+echo "Gloning template project from: $templateRepo"
+
+git clone $templateRepo
+
+now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
+
+echo "Renaming template to $now"
+mv TypeScript-Mocha-Template $now
+
+cd $now
+rm -rf .git
+echo 'Installing dependencies ...'
+npm install
+code .
+npm test
