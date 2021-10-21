@@ -1,0 +1,19 @@
+#!/bin/bash
+
+now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
+
+echo "Making and going into directory $now"
+
+mkdir $now && cd $now
+
+echo "Creating go module"
+
+go mod init $now
+
+echo "Creating files"
+
+touch main.go main_test.go
+
+echo "Launching VS Code"
+
+code .
