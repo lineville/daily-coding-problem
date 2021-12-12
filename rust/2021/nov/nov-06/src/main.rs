@@ -18,10 +18,10 @@ fn can_shift(a: String, b: String) -> bool {
     let mut shifted_b = shift_string(b);
 
     for _ in 0..a.len() {
-        shifted_b = shift_string(shifted_b);
         if shifted_b == a {
             return true;
         }
+        shifted_b = shift_string(shifted_b);
     }
     return false;
 }
