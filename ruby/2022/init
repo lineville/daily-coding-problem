@@ -1,0 +1,10 @@
+#!/bin/bash
+
+now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
+echo "Initializing Ruby projectfor $now"
+mkdir $now
+cd $now
+touch main.rb main_spec.rb
+gem install rspec
+echo "Opening in VS Code"
+code .
