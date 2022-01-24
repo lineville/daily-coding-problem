@@ -1,7 +1,7 @@
 #!/bin/bash
 
 now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
-echo "Initializing Ruby projectfor $now"
+echo "Initializing Ruby project for $now"
 mkdir $now
 cd $now
 touch main.rb main_spec.rb
