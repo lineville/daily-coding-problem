@@ -5,9 +5,25 @@ echo "Initializing Ruby project for $now"
 mkdir $now
 cd $now
 
+mkdir lib spec
 touch lib/main.rb spec/main_spec.rb Gemfile
-cat 'source /"https://rubygems.org/"\n\ngem /"rspec/"' > Gemfile
+
+printf "source \"https://rubygems.org\"\n\ngem \"rspec\"" >> Gemfile
 bundle install
+
+printf "require \'rspec\'
+require_relative \'../lib/main\'
+
+describe \'Main\' do
+    it \'should return the correct value\' do
+        expect(implement_me).to eq(0)
+    end
+end" >> spec/main_spec.rb
+
+printf "def implement_me
+    return -1
+end" >> lib/main.rb
+
 bundle exec rspec
 echo "Opening in VS Code"
 code .
