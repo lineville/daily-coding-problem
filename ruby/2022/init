@@ -4,7 +4,10 @@ now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
 echo "Initializing Ruby project for $now"
 mkdir $now
 cd $now
-touch main.rb main_spec.rb
-gem install rspec
+
+touch lib/main.rb spec/main_spec.rb Gemfile
+cat 'source /"https://rubygems.org/"\n\ngem /"rspec/"' > Gemfile
+bundle install
+bundle exec rspec
 echo "Opening in VS Code"
 code .
