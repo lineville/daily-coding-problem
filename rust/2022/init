@@ -2,9 +2,9 @@
 
 now=$(date +%b-%d | tr '[:upper:]' '[:lower:]')
 echo "Creating Rust Project for $now"
-cargo new $now
-cp -rp  "../.vscode/" $now
-cd $now
+cargo new "$now"
+
+cd "$now" || exit
 echo "Building Project"
 cargo build
 echo "Opening in VS Code"
